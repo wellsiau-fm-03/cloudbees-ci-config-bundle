@@ -1,9 +1,5 @@
 jenkins:
-  globalNodeProperties:
-  - envVars:
-      env:
-      - key: "BUNDLE_ID"
-        value: "REPLACE_BUNDLE_ID"
+  authorizationStrategy: "cloudBeesRoleBasedAccessControl"
   quietPeriod: 0
   systemMessage: 'Jenkins configured using CloudBees CI CasC - v1'
 unclassified:
@@ -29,21 +25,23 @@ unclassified:
           scm:
             github:
               credentialsId: "cloudbees-ci-workshop-github-app"
-              repoOwner: "REPLACE_GITHUB_ORG"
+              repoOwner: "wellsiau-fm-03"
               repository: "pipeline-library"
+groovy:
+  - url: https://raw.githubusercontent.com/wellsiau-fm-03/cloudbees-ci-config-bundle/main/create-pipeline-template-job.groovy
 credentials:
   system:
     domainCredentials:
     - credentials:
       - string:
-          description: "Webhook secret for CloudBees CI Workshop GitHub App"
+          description: "Webhook secret for CloudBees Feature Flags Workshop GitHub App"
           id: "cloudbees-ci-workshop-github-webhook-secret"
           scope: SYSTEM
           secret: "${gitHubWebhookSecret}"
       - gitHubApp:
           apiUri: "https://api.github.com"
-          appID: "${gitHubAppId}"
-          description: "CloudBees CI Workshop GitHub App credential"
+          appID: "79627"
+          description: "CloudBees Feature Flags Workshop GitHub App credential"
           id: "cloudbees-ci-workshop-github-app"
-          owner: "REPLACE_GITHUB_ORG"
-          privateKey: "${gitHubAppPrivateKey}"
+          owner: "wellsiau-fm-03"
+          privateKey: "${featureFlagWorkshopGitHubAppPrivateKey}"
